@@ -59,6 +59,10 @@
         }
       });
     });
+     document.querySelectorAll('.sidebar-link').forEach(link => {
+      const href = link.getAttribute('href');
+      link.setAttribute('href', href + '?nome=' + encodeURIComponent(nome));
+    });
   </script>
 </body>
 </html>

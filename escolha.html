@@ -8,10 +8,10 @@
 <body>
   <aside class="sidebar">
     <nav>
-      <a class="sidebar-link" href="index.html">Início</a>
-      <a class="sidebar-link" href="sobre.html">Sobre</a>
-      <a class="sidebar-link" href="quimica.html">Trabalho de Química</a>
-      <a class="sidebar-link" href="escolha.html">O que você gostaria de aprender hoje?</a>
+      <a class="sidebar-link" href="index.html"+encodeURIComponent(nome)>Início</a>
+      <a class="sidebar-link" href="sobre.html"+encodeURIComponent(nome)>Sobre</a>
+      <a class="sidebar-link" href="quimica.html"+encodeURIComponent(nome)>Trabalho de Química</a>
+      <a class="sidebar-link" href="escolha.html"+encodeURIComponent(nome)>O que você gostaria de aprender hoje?</a>
     </nav>
   </aside>
 
@@ -30,6 +30,10 @@
   const nome = params.get('nome') || 'Professora';
   document.getElementById('saudacao').textContent =
     `Olá ${nome}, você gostaria de aprender um pouco sobre o que hoje?`;
+     document.querySelectorAll('.sidebar-link').forEach(link => {
+      const href = link.getAttribute('href');
+      link.setAttribute('href', href + '?nome=' + encodeURIComponent(nome));
+    });
 </script>
 </body>
 </html>

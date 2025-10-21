@@ -26,6 +26,10 @@
   <script>
     document.getElementById('começarBtn').addEventListener('click', function() {
       window.location.href = 'pedirNome.html';
+       document.querySelectorAll('.sidebar-link').forEach(link => {
+      const href = link.getAttribute('href');
+      link.setAttribute('href', href + '?nome=' + encodeURIComponent(nome));
+    });
     });
   </script>
 </body>
