@@ -6,22 +6,30 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <aside class="sidebar">
-  <nav>
-    <a class="sidebar-link" href="index.html">Início</a>
-    <a class="sidebar-link" href="sobre.html">Sobre</a>
-    <a class="sidebar-link" href="quimica.html">Trabalho de Química</a>
-    <a class="sidebar-link" href="escolha.html">O que você gostaria de aprender hoje?</a>
-  </nav>
-</aside>
+  <aside class="sidebar">
+    <nav>
+      <a class="sidebar-link" href="index.html">Início</a>
+      <a class="sidebar-link" href="sobre.html">Sobre</a>
+      <a class="sidebar-link" href="quimica.html">Trabalho de Química</a>
+      <a class="sidebar-link" href="escolha.html">O que você gostaria de aprender hoje?</a>
+    </nav>
+  </aside>
+
 <div class="main-content">
   <div class="container">
-    
-    <h1>Você gostaria de aprender o quê hoje?</h1>
-    <button onclick="window.location.href='erro.html'">Receita de bolo de fubá</button>
-    <button onclick="window.location.href='quimica.html'">Trabalho de química</button>
-    <button onclick="window.location.href='curiosidades.html'">Curiosidades Químicas</button>
+    <h1 id="saudacao">Olá, você gostaria de aprender um pouco sobre o que hoje?</h1>
+    <p>Escolha uma das opções abaixo:</p>
+    <button onclick="window.location.href='erro.html?nome='+encodeURIComponent(nome)">Receita de bolo de fubá</button>
+    <button onclick="window.location.href='quimica.html?nome='+encodeURIComponent(nome)">Trabalho de Química</button>
+    <button onclick="window.location.href='curiosidades.html?nome='+encodeURIComponent(nome)">Curiosidades Químicas</button>
   </div>
 </div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const nome = params.get('nome') || 'Professora';
+  document.getElementById('saudacao').textContent =
+    `Olá ${nome}, você gostaria de aprender um pouco sobre o que hoje?`;
+</script>
 </body>
 </html>

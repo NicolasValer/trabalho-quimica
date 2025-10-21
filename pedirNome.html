@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Verificação de Nome</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <nav>
+      <a class="sidebar-link" href="index.html">Início</a>
+      <a class="sidebar-link" href="sobre.html">Sobre</a>
+      <a class="sidebar-link" href="quimica.html">Trabalho de Química</a>
+      <a class="sidebar-link" href="escolha.html">O que você gostaria de aprender hoje?</a>
+    </nav>
+  </aside>
+
+  <div class="main-content">
+    <div class="container">
+      <h1>Bem-vindo!</h1>
+      <p>Por favor, preencha seu nome para continuar:</p>
+      <form id="formNome">
+        <input type="text"
+               id="nomeProf"
+               name="nomeProf"
+               placeholder="Digite seu nome..."
+               autocomplete="off"
+               required>
+        <br>
+        <button type="submit" id="seguirBtn">Seguir</button>
+      </form>
+      <p id="mensagemErro" class="erro-texto">Por favor, digite seu nome para continuar.</p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('formNome').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const nome = document.getElementById('nomeProf').value.trim();
+      if (nome === '') {
+        document.getElementById('mensagemErro').style.display = 'block';
+      } else {
+        window.location.href = 'escolha.html?nome=' + encodeURIComponent(nome);
+      }
+    });
+  </script>
+</body>
+</html>

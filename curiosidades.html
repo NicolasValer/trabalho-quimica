@@ -7,35 +7,38 @@
 </head>
 <body>
   <aside class="sidebar">
-  <nav>
-    <a class="sidebar-link" href="index.html">Início</a>
-    <a class="sidebar-link" href="sobre.html">Sobre</a>
-    <a class="sidebar-link" href="quimica.html">Trabalho de Química</a>
-    <a class="sidebar-link" href="escolha.html">O que você gostaria de aprender hoje?</a>
-  </nav>
-</aside>
-<div class="main-content">
-  <div class="container">
-    
-    <h1>Curiosidades Químicas</h1>
-    <p id="mensagem">Era para você ir ver o trabalho, mas já que você quer uma curiosidade então:</p>
-    <p id="curiosidade" style="font-size: 1.2em; margin-top: 20px;"></p>
-    <br>
-    <button onclick="window.location.href='index.html'">Voltar ao início</button>
+    <nav>
+      <a class="sidebar-link" href="index.html">Início</a>
+      <a class="sidebar-link" href="sobre.html">Sobre</a>
+      <a class="sidebar-link" href="quimica.html">Trabalho de Química</a>
+      <a class="sidebar-link" href="escolha.html">O que você gostaria de aprender hoje?</a>
+    </nav>
+  </aside>
+
+  <div class="main-content">
+    <div class="container">
+      <h1>Curiosidades Químicas</h1>
+      <p id="mensagemCuriosidade"></p>
+      <br>
+      <button onclick="window.location.href='escolha.html?nome='+encodeURIComponent(nome)">Voltar ao início</button>
+    </div>
   </div>
 
   <script>
+    const params = new URLSearchParams(window.location.search);
+    const nome = params.get('nome') || 'Professora';
+
     const curiosidades = [
-      "A letra ‘J’ é a única que não aparece na tabela periódica.",
-      "Se você misturar água e sal, o volume total pode diminuir — ou seja, quando sal se dissolve, a água reorganiza-se e o volume pode ficar menor.",
-      "Seu corpo contém carbono suficiente para fabricar cerca de 10.000 lápis.",
-      "A maior parte da matéria visível do universo — cerca de 73% — é hidrogênio, e cerca de 25% é hélio; ou seja, tudo que vemos demais é apenas ~2%.",
-      "Alguns elementos radioativos ou nucleares realmente brilham no escuro."
+      "Muitos odores agradáveis de frutas, como banana e maçã, vêm de ésteres — compostos formados por um ácido carboxílico reagido com um álcool.",
+      "Os ácidos carboxílicos contêm o grupo funcional -COOH e podem formar dímeros por ligações de hidrogênio, aumentando seus pontos de ebulição.",
+      "Os éteres possuem o grupo funcional -O- entre radicais de carbono — em contraste com ésteres que têm -COO-.",
+      "Os ésteres normalmente têm pontos de ebulição mais baixos que os ácidos carboxílicos correspondentes porque formam menos ligações de hidrogênio intermoleculares.",
+      "A reação de esterificação — ácido carboxílico + álcool → éster + água — é amplamente usada em perfumaria e saborizantes."
     ];
 
     const indice = Math.floor(Math.random() * curiosidades.length);
-    document.getElementById("curiosidade").textContent = curiosidades[indice];
+    document.getElementById('mensagemCuriosidade').textContent =
+      `Olá ${nome}. Era para você ir ver o trabalho, mas já que você quer uma curiosidade então: ${curiosidades[indice]}`;
   </script>
-</div>
 </body>
 </html>

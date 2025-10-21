@@ -6,43 +6,59 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <aside class="sidebar">
-  <nav>
-    <a class="sidebar-link" href="index.html">Início</a>
-    <a class="sidebar-link" href="sobre.html">Sobre</a>
-    <a class="sidebar-link" href="quimica.html">Trabalho de Química</a>
-    <a class="sidebar-link" href="escolha.html">O que você gostaria de aprender hoje?</a>
-  </nav>
-</aside>
-<div class="main-content">
-  <div class="container">
-    
-    <h1>Trabalho de Química: Ácidos Carboxílicos, Éter e Éster</h1>
-    <p>Abaixo estão vídeos sobre o conteúdo:</p>
-    
-    <!-- vídeo 1 -->
-    <video width="100%" controls>
-      <source src="videos/video1.mp4" type="video/mp4">
-      Seu navegador não suporta a tag de vídeo.
-    </video>
-    <br><br>
+  <aside class="sidebar">
+    <nav>
+      <a class="sidebar-link" href="index.html">Início</a>
+      <a class="sidebar-link" href="sobre.html">Sobre</a>
+      <a class="sidebar-link" href="quimica.html">Trabalho de Química</a>
+      <a class="sidebar-link" href="escolha.html">O que você gostaria de aprender hoje?</a>
+    </nav>
+  </aside>
 
-    <!-- vídeo 2 -->
-    <video width="100%" controls>
-      <source src="videos/video2.mp4" type="video/mp4">
-      Seu navegador não suporta a tag de vídeo.
-    </video>
-    <br><br>
+  <div class="main-content">
+    <div class="container">
+      <h1 id="tituloBemVinda"></h1>
+      <p>Aqui está o que você precisa saber sobre os ácidos carboxílicos, éter e éster.</p>
 
-    <!-- vídeo 3 -->
-    <video width="100%" controls>
-      <source src="videos/video3.mp4" type="video/mp4">
-      Seu navegador não suporta a tag de vídeo.
-    </video>
+      <h2>Vídeo 1: Ácidos Carboxílicos</h2>
+      <video width="100%" controls>
+        <source src="videos/video1.mp4" type="video/mp4">
+        Seu navegador não suporta a tag de vídeo.
+      </video>
 
-    <br><br>
-    <button onclick="window.location.href='index.html'">Voltar ao início</button>
+      <h2>Vídeo 2: Éter</h2>
+      <video width="100%" controls>
+        <source src="videos/video2.mp4" type="video/mp4">
+        Seu navegador não suporta a tag de vídeo.
+      </video>
+
+      <h2>Vídeo 3: Éster</h2>
+      <video width="100%" controls>
+        <source src="videos/video3.mp4" type="video/mp4">
+        Seu navegador não suporta a tag de vídeo.
+      </video>
+
+      <br>
+      <button id="botaoQuestionario" style="display:none;" onclick="window.location.href='questionario.html?nome='+encodeURIComponent(nome)">Ir para o questionário</button>
+    </div>
   </div>
-</div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const nome = params.get('nome') || 'Professora';
+    document.getElementById('tituloBemVinda').textContent = `Olá ${nome}, seja bem-vinda!`;
+
+    const videos = document.querySelectorAll('video');
+    let countPlay = 0;
+
+    videos.forEach(video => {
+      video.addEventListener('play', () => {
+        countPlay++;
+        if (countPlay >= 3) {
+          document.getElementById('botaoQuestionario').style.display = 'inline-block';
+        }
+      });
+    });
+  </script>
 </body>
 </html>
