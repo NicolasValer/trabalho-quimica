@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Questionário – Trabalho de Química</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <nav>
+      <a class="sidebar-link" href="index.html">Início</a>
+      <a class="sidebar-link" href="sobre.html">Sobre</a>
+      <a class="sidebar-link" href="quimica.html">Trabalho de Química</a>
+      <a class="sidebar-link" href="escolha.html">O que você gostaria de aprender hoje?</a>
+    </nav>
+  </aside>
+
+  <div class="main-content">
+    <div class="container">
+      <h1 id="tituloQuestionario">Questionário – Química Orgânica</h1>
+      <p id="saudacao"></p>
+
+      <form id="formQuestionario">
+        <fieldset>
+          <legend>1. Qual é o grupo funcional característico dos ácidos carboxílicos?</legend>
+          <label><input type="radio" name="q1" value="a"> a) –OH (hidroxila)</label><br>
+          <label><input type="radio" name="q1" value="b"> b) –COOH (carboxila)</label><br>
+          <label><input type="radio" name="q1" value="c"> c) –COO– (éster)</label><br>
+          <label><input type="radio" name="q1" value="d"> d) –O– (éter)</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>2. Os ésteres são formados pela reação entre:</legend>
+          <label><input type="radio" name="q2" value="a"> a) Dois ácidos carboxílicos</label><br>
+          <label><input type="radio" name="q2" value="b"> b) Um éter e um álcool</label><br>
+          <label><input type="radio" name="q2" value="c"> c) Um ácido carboxílico e um álcool</label><br>
+          <label><input type="radio" name="q2" value="d"> d) Um alcano e uma amina</label>
+        </fieldset>
+
+        <button type="submit">Enviar respostas</button>
+      </form>
+
+      <div id="resultado" style="display:none; margin-top:20px;">
+        <h2>Resultado</h2>
+        <p id="textoResultado"></p>
+        <button id="botaoVoltar">Voltar ao início</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const nome = params.get('nome') || 'Professora';
+    document.getElementById('saudacao').textContent = `Olá ${nome}, responda às questões abaixo:`;
+
+    // Atualiza links da sidebar
+    document.querySelectorAll('.sidebar-link').forEach(link => {
+      const href = link.getAttribute('href');
+      link.setAttribute('href', href + '?nome=' + encodeURIComponent(nome));
+    });
+
+    const form = document.getElementById('formQuestionario');
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      let score = 0;
+
+      const q1 = form.q1.value;
+      const q2 = form.q2.value;
+
+      if (q1 === 'b') score++;
+      if (q2 === 'c') score++;
+
+      document.getElementById('textoResultado').textContent =
+        `${nome}, você acertou ${score} de 2 questões!`;
+      document.getElementById('resultado').style.display = 'block';
+    });
+
+    document.getElementById('botaoVoltar').addEventListener('click', () => {
+      window.location.href = 'index.html?nome=' + encodeURIComponent(nome);
+    });
+  </script>
+</body>
+</html>
